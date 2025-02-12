@@ -6,6 +6,7 @@
 package poryectomeno.utils;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -26,6 +27,17 @@ public class FechasUtils {
             return "";
         }
         return fecha.substring(8, 10) + "-" + fecha.substring(5, 7) + "-" + fecha.substring(0, 4);
+    }
+    /**
+     * Suma a la fecha actual el número de meses que se pase como parámetro
+     * @param n numero de meses a sumar
+     * @return 
+     */
+    public static String sumaMesesHoy(int n){
+        LocalDate fechaActual = LocalDate.now();
+        LocalDate nuevaFecha = fechaActual.plusMonths((-1)*n);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        return nuevaFecha.format(formatter);
     }
     /**
      * Dada una fecha de mysql (aaaa-mm-dd hh:mm:ss) genera la fecha estandar con el separador que se le pasa como parámetro
