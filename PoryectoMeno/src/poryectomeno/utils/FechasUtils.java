@@ -5,13 +5,12 @@
  */
 package poryectomeno.utils;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 
 public class FechasUtils {
 
@@ -39,6 +38,32 @@ public class FechasUtils {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return nuevaFecha.format(formatter);
     }
+    /**
+     * Calcula la edad de la persona que se pasa su fecha en formado dd-mm-aaaa
+     * @param fecha
+     * @return 
+     */
+    public static String getEdad(String fecha){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate fechaNacimiento = LocalDate.parse(fecha, formatter);
+        LocalDate fechaActual = LocalDate.now();
+        int edad = Period.between(fechaNacimiento, fechaActual).getYears();
+        return ""+edad;
+    }
+    
+    /**
+     * Calcula los meses que hay entre una fecha y hoy
+     * @param fecha
+     * @return 
+     */
+    public static String getMeses(String fecha){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate fechaCal = LocalDate.parse(fecha, formatter);
+        LocalDate fechaActual = LocalDate.now();
+        int edad = Period.between(fechaCal, fechaActual).getMonths();
+        return ""+edad;
+    }
+    
     /**
      * Dada una fecha de mysql (aaaa-mm-dd hh:mm:ss) genera la fecha estandar con el separador que se le pasa como parámetro
      * @param fecha
