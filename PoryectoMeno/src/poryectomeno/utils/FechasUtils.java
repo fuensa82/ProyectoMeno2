@@ -52,11 +52,14 @@ public class FechasUtils {
     }
     
     /**
-     * Calcula los meses que hay entre una fecha y hoy
+     * Calcula los meses que hay entre una fecha y hoy. Si la fecha enviada es Null o "" devolverá 0
      * @param fecha
      * @return 
      */
     public static String getMeses(String fecha){
+        if(fecha==null || "".equalsIgnoreCase(fecha)){
+            return "0";
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate fechaCal = LocalDate.parse(fecha, formatter);
         LocalDate fechaActual = LocalDate.now();
