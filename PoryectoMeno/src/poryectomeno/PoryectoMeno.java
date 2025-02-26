@@ -79,8 +79,18 @@ public class PoryectoMeno extends javax.swing.JFrame {
         });
     }
     private void cargarDatosHistClinica(String idPaciente) {
-        ArrayList<HistoriaClinicaBean> histClinic=GestionHistoriaClinicaBD.getHistoriaClinica(idPaciente);
-        
+        ArrayList<HistoriaClinicaBean> listaHistClinic=GestionHistoriaClinicaBD.getHistoriaClinica(idPaciente);
+        DefaultTableModel datosTabla = (DefaultTableModel) jTableHistoriaClinica.getModel();
+        for (int i = datosTabla.getRowCount(); i > 0; i--) {
+            datosTabla.removeRow(i - 1);
+        }
+        for (HistoriaClinicaBean linea : listaHistClinic) {
+            datosTabla.addRow(new Object[]{
+                linea.getFechaAlta(),
+                linea.getP1()+"/"+linea.getP2(),
+                linea.getP3()
+            });
+        }
         
     }
 
@@ -262,7 +272,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableHistoriaClinica = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -1098,7 +1108,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableHistoriaClinica.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -1114,7 +1124,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jTableHistoriaClinica);
 
         jButton3.setText("Guardar datos");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -1518,7 +1528,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableHistoriaClinica;
     private javax.swing.JTable jTablePacientes;
     private javax.swing.JTextField jTextD19;
     private javax.swing.JTextField jTextE18;
