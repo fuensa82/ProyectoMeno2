@@ -9,9 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.NamingException;
 import poryectomeno.Beans.HistoriaClinicaBean;
 import poryectomeno.utils.ConectorBD;
+import poryectomeno.utils.FechasUtils;
 
 /**
  *
@@ -57,6 +60,42 @@ public class GestionHistoriaClinicaBD {
             }
         }
         return result;
+    }
+    
+    public static boolean guardarHistoria(HistoriaClinicaBean historia){
+        boolean result = false;
+        Connection conexion = null;
+
+        try {
+            conexion = ConectorBD.getConnection();
+
+            PreparedStatement insert1 = conexion.prepareStatement("INSERT INTO `menopausia`.`histclinica` (`idPaciente`, `fechaAlta`, `P1`, `P2`, `P3`, `P4`, `P5`, `P6`, `P7`, `P8`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+            
+            insert1.setString(1, historia.getIdPaciente());
+            insert1.setString(2, FechasUtils.fechaHoyParaMysql());
+            insert1.setString(3, historia.getP1()); //P1
+            insert1.setString(4, historia.getP2()); //P1
+            insert1.setString(5, historia.getP3()); //P1
+            insert1.setString(6, historia.getP4()); //P1
+            insert1.setString(7, historia.getP5()); //P1
+            insert1.setString(8, historia.getP6()); //P1
+            insert1.setString(9, historia.getP7()); //P1
+            insert1.setString(10, historia.getP8()); //P1
+            
+            System.out.println(insert1.toString());
+            insert1.executeUpdate();
+
+            return true;
+
+        } catch (NamingException ex) {
+            Logger.getLogger(GestionHistoriaClinicaBD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionHistoriaClinicaBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return result;
+    
+        
     }
 
 }

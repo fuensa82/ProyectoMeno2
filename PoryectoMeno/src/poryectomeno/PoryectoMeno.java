@@ -87,8 +87,13 @@ public class PoryectoMeno extends javax.swing.JFrame {
         for (HistoriaClinicaBean linea : listaHistClinic) {
             datosTabla.addRow(new Object[]{
                 linea.getFechaAlta(),
-                linea.getP1()+"/"+linea.getP2(),
-                linea.getP3()
+                linea.getP1(),
+                linea.getP2()+"/"+linea.getP3(),
+                linea.getP4(),
+                linea.getP5(),
+                linea.getP6(),
+                linea.getP7(),
+                linea.getP8()
             });
         }
         
@@ -256,21 +261,21 @@ public class PoryectoMeno extends javax.swing.JFrame {
         jLabel41 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel43 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextHCP1 = new javax.swing.JTextField();
         jLabel44 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jTextHCP2 = new javax.swing.JTextField();
+        jTextHCP3 = new javax.swing.JTextField();
         jLabel45 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel46 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        jTextHCP5 = new javax.swing.JTextField();
+        jTextHCP6 = new javax.swing.JTextField();
         jLabel48 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        jTextHCP7 = new javax.swing.JTextField();
+        jTextHCP8 = new javax.swing.JTextField();
+        jTextHCP4 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableHistoriaClinica = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
@@ -1075,18 +1080,18 @@ public class PoryectoMeno extends javax.swing.JFrame {
                     .addComponent(jLabel47))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField5)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
+                    .addComponent(jTextHCP5)
+                    .addComponent(jTextHCP6, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
                 .addGap(51, 51, 51)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel48)
                         .addGap(35, 35, 35)
-                        .addComponent(jTextField7))
+                        .addComponent(jTextHCP7))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel49)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextHCP8, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
@@ -1095,16 +1100,16 @@ public class PoryectoMeno extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel46)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextHCP5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel48)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextHCP7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel47)
                     .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextHCP6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel49)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextHCP8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
@@ -1113,18 +1118,35 @@ public class PoryectoMeno extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Peso", "Presión arterial", "Cintura", "Triglicéridos", "Glucemia", "FSH", "Estradiol"
+                "Fecha", "Peso", "Presión arterial", "Cintura", "Triglicéridos", "Glucemia", "FSH", "Estradiol"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane2.setViewportView(jTableHistoriaClinica);
+        if (jTableHistoriaClinica.getColumnModel().getColumnCount() > 0) {
+            jTableHistoriaClinica.getColumnModel().getColumn(0).setResizable(false);
+            jTableHistoriaClinica.getColumnModel().getColumn(1).setResizable(false);
+            jTableHistoriaClinica.getColumnModel().getColumn(2).setResizable(false);
+            jTableHistoriaClinica.getColumnModel().getColumn(3).setResizable(false);
+            jTableHistoriaClinica.getColumnModel().getColumn(4).setResizable(false);
+            jTableHistoriaClinica.getColumnModel().getColumn(5).setResizable(false);
+            jTableHistoriaClinica.getColumnModel().getColumn(6).setResizable(false);
+            jTableHistoriaClinica.getColumnModel().getColumn(7).setResizable(false);
+        }
 
         jButton3.setText("Guardar datos");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -1148,12 +1170,12 @@ public class PoryectoMeno extends javax.swing.JFrame {
                             .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
+                            .addComponent(jTextHCP1)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextHCP2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextField4))
+                                .addComponent(jTextHCP3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextHCP4))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
@@ -1171,16 +1193,16 @@ public class PoryectoMeno extends javax.swing.JFrame {
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel43)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextHCP1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel44)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextHCP2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextHCP3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel45)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jTextHCP4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1394,7 +1416,18 @@ public class PoryectoMeno extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextP1InputMethodTextChanged
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        HistoriaClinicaBean hist=new HistoriaClinicaBean();
+        String idPaciente = (String) jTablePacientes.getValueAt(jTablePacientes.getSelectedRow(),0);
+        hist.setIdPaciente(idPaciente);
+        hist.setP1(jTextHCP1.getText());
+        hist.setP2(jTextHCP2.getText());
+        hist.setP3(jTextHCP3.getText());
+        hist.setP4(jTextHCP4.getText());
+        hist.setP5(jTextHCP5.getText());
+        hist.setP6(jTextHCP6.getText());
+        hist.setP7(jTextHCP7.getText());
+        hist.setP8(jTextHCP8.getText());
+        GestionHistoriaClinicaBD.guardarHistoria(hist);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -1538,14 +1571,14 @@ public class PoryectoMeno extends javax.swing.JFrame {
     private javax.swing.JTextField jTextE23;
     private javax.swing.JTextField jTextEdad;
     private javax.swing.JTextField jTextFechaNac;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextHCP1;
+    private javax.swing.JTextField jTextHCP2;
+    private javax.swing.JTextField jTextHCP3;
+    private javax.swing.JTextField jTextHCP4;
+    private javax.swing.JTextField jTextHCP5;
+    private javax.swing.JTextField jTextHCP6;
+    private javax.swing.JTextField jTextHCP7;
+    private javax.swing.JTextField jTextHCP8;
     private javax.swing.JTextField jTextHFam1;
     private javax.swing.JTextField jTextHFam2;
     private javax.swing.JTextField jTextHFam3;
