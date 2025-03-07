@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package poryectomeno;
+package proyectomeno;
 
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
@@ -10,21 +10,16 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
-import poryectomeno.Beans.HistoriaClinicaBean;
-import poryectomeno.Beans.HistoriaClinicaFamiliarBean;
-import poryectomeno.Beans.HistoriaClinicaFijaBean;
-import poryectomeno.Beans.PacienteBean;
-import poryectomeno.Gestores.GestionHistoriaClinicaBD;
-import poryectomeno.Gestores.GestionPacientesBD;
-import poryectomeno.utils.FechasUtils;
+import proyectomeno.Beans.HistoriaClinicaBean;
+import proyectomeno.Beans.HistoriaClinicaFamiliarBean;
+import proyectomeno.Beans.HistoriaClinicaFijaBean;
+import proyectomeno.Beans.PacienteBean;
+import proyectomeno.Gestores.GestionHistoriaClinicaBD;
+import proyectomeno.Gestores.GestionPacientesBD;
+import proyectomeno.utils.FechasUtils;
 
 /**
  *
@@ -391,7 +386,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
             jTablePacientes.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/poryectomeno/multimedia/LogoFarmacia2019x100.png"))); // NOI18N
+        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectomeno/multimedia/LogoFarmacia2019x100.png"))); // NOI18N
 
         jLabelTituloApp.setFont(new java.awt.Font("Segoe Print", 1, 36)); // NOI18N
         jLabelTituloApp.setForeground(new java.awt.Color(255, 132, 0));

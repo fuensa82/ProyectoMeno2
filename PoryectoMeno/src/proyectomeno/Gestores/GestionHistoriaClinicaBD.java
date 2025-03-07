@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package poryectomeno.Gestores;
+package proyectomeno.Gestores;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
-import poryectomeno.Beans.HistoriaClinicaBean;
-import poryectomeno.utils.ConectorBD;
-import poryectomeno.utils.FechasUtils;
+import proyectomeno.Beans.HistoriaClinicaBean;
+import proyectomeno.utils.ConectorBD;
+import proyectomeno.utils.FechasUtils;
 
 /**
  *

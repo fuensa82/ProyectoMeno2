@@ -2,32 +2,34 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package poryectomeno.Beans;
+package proyectomeno.Beans;
 
 /**
  *
  * @author vPalomo
  */
-public class HistoriaClinicaBean {
+public class HistoriaClinicaFamiliarBean {
 
-    private String idLineaHistClinica;
+    private String idHistClinicaFam;
     private String idPaciente;
     private String fechaAlta;
     private String P1;
+    private String E1;
     private String P2;
+    private String E2;
     private String P3;
+    private String E3;
     private String P4;
+    private String E4;
     private String P5;
     private String P6;
-    private String P7;
-    private String P8;
 
-    public String getIdLineaHistClinica() {
-        return idLineaHistClinica;
+    public String getIdHistClinicaFam() {
+        return idHistClinicaFam;
     }
 
-    public void setIdLineaHistClinica(String idLineaHistClinica) {
-        this.idLineaHistClinica = idLineaHistClinica;
+    public void setIdHistClinicaFam(String idHistClinicaFam) {
+        this.idHistClinicaFam = idHistClinicaFam;
     }
 
     public String getIdPaciente() {
@@ -54,12 +56,28 @@ public class HistoriaClinicaBean {
         this.P1 = P1;
     }
 
+    public String getE1() {
+        return E1;
+    }
+
+    public void setE1(String E1) {
+        this.E1 = E1;
+    }
+
     public String getP2() {
         return P2;
     }
 
     public void setP2(String P2) {
         this.P2 = P2;
+    }
+
+    public String getE2() {
+        return E2;
+    }
+
+    public void setE2(String E2) {
+        this.E2 = E2;
     }
 
     public String getP3() {
@@ -70,12 +88,28 @@ public class HistoriaClinicaBean {
         this.P3 = P3;
     }
 
+    public String getE3() {
+        return E3;
+    }
+
+    public void setE3(String E3) {
+        this.E3 = E3;
+    }
+
     public String getP4() {
         return P4;
     }
 
     public void setP4(String P4) {
         this.P4 = P4;
+    }
+
+    public String getE4() {
+        return E4;
+    }
+
+    public void setE4(String E4) {
+        this.E4 = E4;
     }
 
     public String getP5() {
@@ -94,19 +128,4 @@ public class HistoriaClinicaBean {
         this.P6 = P6;
     }
 
-    public String getP7() {
-        return P7;
-    }
-
-    public void setP7(String P7) {
-        this.P7 = P7;
-    }
-
-    public String getP8() {
-        return P8;
-    }
-
-    public void setP8(String P8) {
-        this.P8 = P8;
-    }
 }
