@@ -4,6 +4,10 @@
  */
 package proyectomeno;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,6 +58,8 @@ public class PoryectoMeno extends javax.swing.JFrame {
         creaListaMapaHistFam();
         cargarTablaPacientes();
         ponListenerTablapacientes();
+        ponListenerA(listaCombosHist);
+        ponListenerA(listaCombosHistFam);
     }
 
     private void ponListenerTablapacientes() {
@@ -433,7 +439,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
 
         jLabel9.setText("3. Fecha última regla");
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255)), "¿Tiene problemas con alguno de estos sistemas?", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(102, 102, 255))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)), "¿Tiene problemas con alguno de estos sistemas?"));
 
         jLabel4.setText("4. Gastrointestinal");
 
@@ -795,7 +801,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 102)), "Hábitos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(255, 102, 102))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)), "Hábitos"));
 
         jLabel31.setText("Consumo de alcohol y/o drogas");
 
@@ -866,7 +872,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
 
         jButton2.setText("Descartar cambios");
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 51)), "Historia clínica familiar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 204, 51))); // NOI18N
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)), "Historia clínica familiar"));
 
         jLabel23.setText("Presión sanguínea alta");
 
@@ -1242,13 +1248,10 @@ public class PoryectoMeno extends javax.swing.JFrame {
                                 .addComponent(jTextHCP3, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                             .addComponent(jTextHCP4, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTexHCFecha))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1836,7 +1839,19 @@ public class PoryectoMeno extends javax.swing.JFrame {
         mapaCombosHistFam.put("HFam6", jComboHFam6);
     }
 
-    private void ponListenerATodo() {
+    private void ponListenerA(ArrayList<JComboBox> listaCombos) {
+        for (JComboBox combo : listaCombos) {
+            combo.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    String seleccion = (String) e.getItem();
+                    System.out.println("Selección cambiada a: " + seleccion);
+                }
+            }
+        });
+        }
+        
         JComboBox name = listaCombosHist.get(0);
         name.addActionListener(name);
     }

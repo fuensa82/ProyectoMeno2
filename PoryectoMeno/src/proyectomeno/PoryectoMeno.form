@@ -401,10 +401,9 @@
                         <TitledBorder title="&#xbf;Tiene problemas con alguno de estos sistemas?">
                           <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                             <LineBorder>
-                              <Color PropertyName="color" blue="ff" green="66" red="66" type="rgb"/>
+                              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
                             </LineBorder>
                           </Border>
-                          <Color PropertyName="color" blue="ff" green="66" red="66" type="rgb"/>
                         </TitledBorder>
                       </Border>
                     </Property>
@@ -1074,10 +1073,9 @@
                         <TitledBorder title="H&#xe1;bitos">
                           <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                             <LineBorder>
-                              <Color PropertyName="color" blue="66" green="66" red="ff" type="rgb"/>
+                              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
                             </LineBorder>
                           </Border>
-                          <Color PropertyName="color" blue="66" green="66" red="ff" type="rgb"/>
                         </TitledBorder>
                       </Border>
                     </Property>
@@ -1206,10 +1204,9 @@
                         <TitledBorder title="Historia cl&#xed;nica familiar">
                           <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                             <LineBorder>
-                              <Color PropertyName="color" blue="33" green="cc" red="0" type="rgb"/>
+                              <Color PropertyName="color" blue="cc" green="cc" red="cc" type="rgb"/>
                             </LineBorder>
                           </Border>
-                          <Color PropertyName="color" blue="33" green="cc" red="0" type="rgb"/>
                         </TitledBorder>
                       </Border>
                     </Property>
@@ -1493,15 +1490,10 @@
                                       <Component id="jTextHCP4" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jTexHCFecha" alignment="1" max="32767" attributes="0"/>
                                   </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel51" min="-2" pref="171" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel50" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="jLabel51" min="-2" pref="171" max="-2" attributes="0"/>
+                                      <Component id="jLabel50" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
