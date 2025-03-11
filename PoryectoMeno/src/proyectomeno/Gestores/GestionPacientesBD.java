@@ -130,8 +130,8 @@ public class GestionPacientesBD {
         try {
             conexion = ConectorBD.getConnection();
             PreparedStatement consulta = conexion.prepareStatement(
-                    "SELECT `idHistClinicaFam`, `idPaciente`, `fechaAlta`, `P1`, `E1`, `P2`, `E2`, `P3`, `E3`, `P4`,"+
-                    " `E4`, `P5`, `P6` FROM `menopausia`.`histclinicafamiliar` WHERE  `idPaciente`=? ORDER BY idHistClinicaFam desc");
+                    "SELECT `idHistClinicaFam`, `idPaciente`, `fechaAlta`, `P27`, `E27`, `P28`, `E28`, `P29`, `E29`, `P30`,"+
+                    " `E30`, `P31`, `P32` FROM `menopausia`.`histclinicafamiliar` WHERE  `idPaciente`=? ORDER BY idHistClinicaFam desc");
             consulta.setString(1, idPaciente);
 
             ResultSet resultado = consulta.executeQuery();
@@ -140,17 +140,17 @@ public class GestionPacientesBD {
                 histResult.setIdHistClinicaFam(resultado.getString("idHistClinicaFam"));
                 histResult.setIdPaciente(resultado.getString("idPaciente"));
                 histResult.setFechaAlta(FechasUtils.fecha(resultado.getString("fechaAlta")));
-                histResult.setP1(resultado.getString("P1"));
-                histResult.setP2(resultado.getString("P2"));
-                histResult.setP3(resultado.getString("P3"));
-                histResult.setP4(resultado.getString("P4"));
-                histResult.setP5(resultado.getString("P5"));
-                histResult.setP6(resultado.getString("P6"));
+                histResult.setP27(resultado.getString("P27"));
+                histResult.setP28(resultado.getString("P28"));
+                histResult.setP29(resultado.getString("P29"));
+                histResult.setP30(resultado.getString("P30"));
+                histResult.setP31(resultado.getString("P31"));
+                histResult.setP32(resultado.getString("P32"));
                 
-                histResult.setE1(resultado.getString("E1"));
-                histResult.setE2(resultado.getString("E2"));
-                histResult.setE3(resultado.getString("E3"));
-                histResult.setE4(resultado.getString("E4"));
+                histResult.setE27(resultado.getString("E27"));
+                histResult.setE28(resultado.getString("E28"));
+                histResult.setE29(resultado.getString("E29"));
+                histResult.setE30(resultado.getString("E30"));
                 
                 
                 System.out.println(histResult.toString());
