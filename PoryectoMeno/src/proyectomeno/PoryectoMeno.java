@@ -1997,7 +1997,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
             histClinFija.setE20B(jTextE20B.getText());
             histClinFija.setE23(jTextE23.getText());
             histClinFija.setE25(jTextE25.getText());
-
+ 
             histClinFija.setIdPaciente("" + idPacienteSel);
             System.out.println("Se va a guardar");
             *** hay que hacer un método con un update ++++ tambien falta pasar el is de la historia clinica fija
