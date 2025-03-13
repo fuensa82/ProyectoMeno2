@@ -46,6 +46,15 @@ public class HistoriaClinicaFijaBean {
     private String E23;
     private String P24;
     private String P25;
+    private String E25;
+
+    public String getE25() {
+        return E25;
+    }
+
+    public void setE25(String E25) {
+        this.E25 = E25;
+    }
     private String P26;
 
     public String getP1() {

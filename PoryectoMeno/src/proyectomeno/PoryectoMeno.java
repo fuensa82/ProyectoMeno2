@@ -30,6 +30,9 @@ import proyectomeno.utils.FechasUtils;
  */
 public class PoryectoMeno extends javax.swing.JFrame {
 
+    private static String NUEVO="NUEVO";
+    private static String MTTO="MTTO";
+    
     private ArrayList<PacienteBean> listaPacientes;
     private ArrayList<JComboBox> listaCombosHist;
     private HashMap<String, Object> mapaCombosHist;
@@ -38,6 +41,8 @@ public class PoryectoMeno extends javax.swing.JFrame {
     private HashMap<String, Object> mapaCombosHistFamDD;
     private ArrayList<JTextField> listaJTextField;
     private HashMap<String, Object> mapaJTextFieldDD;
+    public String estado=NUEVO;
+    private String idPacienteSel;
 
     /**
      * Creates new form PoryectoMeno
@@ -62,12 +67,13 @@ public class PoryectoMeno extends javax.swing.JFrame {
         jTablePacientes.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
+                estado=MTTO;
                 if (e.getClickCount() == 1) {
-                    String idPaciente = (String) jTablePacientes.getValueAt(jTablePacientes.getSelectedRow(), 0);
-                    cargarDatosPersonalesPaciente(idPaciente);
-                    cargarDatosHistClinicaFija(idPaciente);
-                    cargarDatosHistClinicaFamilia(idPaciente);
-                    cargarDatosHistClinica(idPaciente);
+                    idPacienteSel = (String) jTablePacientes.getValueAt(jTablePacientes.getSelectedRow(), 0);
+                    cargarDatosPersonalesPaciente(idPacienteSel);
+                    cargarDatosHistClinicaFija(idPacienteSel);
+                    cargarDatosHistClinicaFamilia(idPacienteSel);
+                    cargarDatosHistClinica(idPacienteSel);
                     vaciarHistoriaClinica();
                     System.out.println("Se ha hecho un click");
                 }
@@ -105,7 +111,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
     }
 
     private void cargarDatosHistClinicaFamilia(String idPaciente) {
-        HistoriaClinicaFamiliarBean histClinic = GestionPacientesBD.getHistoriaClinicaFamiliar(idPaciente);
+        HistoriaClinicaFamiliarBean histClinic = GestionHistoriaClinicaBD.getHistoriaClinicaFamiliar(idPaciente);
         marcaComboSiNo("P27", histClinic.getP27());
         jTextE27.setText(histClinic.getE27());
         marcaComboSiNo("P28", histClinic.getP28());
@@ -119,7 +125,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
     }
 
     private void cargarDatosHistClinicaFija(String idPaciente) {
-        HistoriaClinicaFijaBean histClinic = GestionPacientesBD.getHistoriaClinicaFija(idPaciente);
+        HistoriaClinicaFijaBean histClinic = GestionHistoriaClinicaBD.getHistoriaClinicaFija(idPaciente);
         jTextP1a.setText(histClinic.getP1());
         jTextP1.setText(FechasUtils.getMeses(histClinic.getP1()));
         jTextP2a.setText(histClinic.getP2());
@@ -157,7 +163,8 @@ public class PoryectoMeno extends javax.swing.JFrame {
 
     private void cargarDatosPersonalesPaciente(String idPaciente) {
         PacienteBean datosPaciente = GestionPacientesBD.getPaciente(idPaciente);
-        jTextNombre.setText(datosPaciente.getNombre() + " " + datosPaciente.getApellidos());
+        jTextNombre.setText(datosPaciente.getNombre());
+        jTextApellidos.setText(datosPaciente.getApellidos());
         jTextFechaNac.setText(datosPaciente.getFechaNac());
         jTextEdad.setText(FechasUtils.getEdad(datosPaciente.getFechaNac()));
 
@@ -180,6 +187,8 @@ public class PoryectoMeno extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextEdad = new javax.swing.JTextField();
+        jLabel57 = new javax.swing.JLabel();
+        jTextApellidos = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePacientes = new javax.swing.JTable();
         jLabelLogo = new javax.swing.JLabel();
@@ -275,6 +284,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
         jComboP32 = new javax.swing.JComboBox<>();
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel43 = new javax.swing.JLabel();
         jTextHCP1 = new javax.swing.JTextField();
@@ -301,7 +311,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel50 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
-        jTexHCFecha = new javax.swing.JTextField();
+        jTextHCFecha = new javax.swing.JTextField();
         jLabel56 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -326,6 +336,10 @@ public class PoryectoMeno extends javax.swing.JFrame {
 
         jTextEdad.setEditable(false);
 
+        jLabel57.setText("Apellidos");
+
+        jTextApellidos.setToolTipText("");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -334,8 +348,12 @@ public class PoryectoMeno extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(32, 32, 32)
-                .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81)
+                .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(jLabel57)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -355,7 +373,9 @@ public class PoryectoMeno extends javax.swing.JFrame {
                     .addComponent(jTextFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jTextEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel57)
+                    .addComponent(jTextApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -1014,6 +1034,13 @@ public class PoryectoMeno extends javax.swing.JFrame {
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
+        jButton4.setText("Nuevo paciente");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1025,9 +1052,12 @@ public class PoryectoMeno extends javax.swing.JFrame {
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
+                        .addComponent(jButton1)
+                        .addGap(14, 14, 14))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -1047,7 +1077,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
                             .addComponent(jTextP1a, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextP2a, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 1082, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 1086, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -1078,7 +1108,8 @@ public class PoryectoMeno extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton4))
                 .addContainerGap())
         );
 
@@ -1222,9 +1253,9 @@ public class PoryectoMeno extends javax.swing.JFrame {
 
         jLabel51.setText(" ");
 
-        jTexHCFecha.addActionListener(new java.awt.event.ActionListener() {
+        jTextHCFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTexHCFechaActionPerformed(evt);
+                jTextHCFechaActionPerformed(evt);
             }
         });
 
@@ -1252,7 +1283,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextHCP3, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                             .addComponent(jTextHCP4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTexHCFecha))
+                            .addComponent(jTextHCFecha))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1278,7 +1309,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel56)
-                                    .addComponent(jTexHCFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextHCFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel43)
@@ -1495,7 +1526,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboP27ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        guardarDatos();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1515,15 +1546,16 @@ public class PoryectoMeno extends javax.swing.JFrame {
         hist.setP6(jTextHCP6.getText());
         hist.setP7(jTextHCP7.getText());
         hist.setP8(jTextHCP8.getText());
+        hist.setIdPaciente(idPaciente);
         GestionHistoriaClinicaBD.guardarHistoria(hist);
         cargarDatosHistClinica(idPaciente);
         vaciarHistoriaClinica();
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTexHCFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTexHCFechaActionPerformed
+    private void jTextHCFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextHCFechaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTexHCFechaActionPerformed
+    }//GEN-LAST:event_jTextHCFechaActionPerformed
 
     private void jTextHCP4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextHCP4FocusLost
         try {
@@ -1541,6 +1573,13 @@ public class PoryectoMeno extends javax.swing.JFrame {
     private void jTextHCP3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextHCP3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextHCP3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        estado=NUEVO;
+        cargarNuevo();
+        
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
     public void vaciarHistoriaClinica() {
         jTextHCP1.setText("");
         jTextHCP2.setText("");
@@ -1556,7 +1595,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
         jLabel53.setText("");
         jLabel54.setText("");
         jLabel55.setText("");
-        jTexHCFecha.setText("");
+        jTextHCFecha.setText("");
     }
 
     /**
@@ -1598,6 +1637,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboP10;
     private javax.swing.JComboBox<String> jComboP11;
     private javax.swing.JComboBox<String> jComboP12;
@@ -1676,6 +1716,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1699,7 +1740,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTableHistoriaClinica;
     private javax.swing.JTable jTablePacientes;
-    private javax.swing.JTextField jTexHCFecha;
+    private javax.swing.JTextField jTextApellidos;
     private javax.swing.JTextField jTextD19;
     private javax.swing.JTextField jTextE18;
     private javax.swing.JTextField jTextE19;
@@ -1713,6 +1754,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
     private javax.swing.JTextField jTextE30;
     private javax.swing.JTextField jTextEdad;
     private javax.swing.JTextField jTextFechaNac;
+    private javax.swing.JTextField jTextHCFecha;
     private javax.swing.JTextField jTextHCP1;
     private javax.swing.JTextField jTextHCP2;
     private javax.swing.JTextField jTextHCP3;
@@ -1780,6 +1822,14 @@ public class PoryectoMeno extends javax.swing.JFrame {
         listaCombosHist.add(jComboP30);
         listaCombosHist.add(jComboP32);
 
+        listaJTextField.add(jTextP1);
+        listaJTextField.add(jTextP1a);
+        listaJTextField.add(jTextP2);
+        listaJTextField.add(jTextP21);
+        listaJTextField.add(jTextP22);
+        listaJTextField.add(jTextP2a);
+        listaJTextField.add(jTextP3);
+        listaJTextField.add(jTextP31);
         listaJTextField.add(jTextE18);
         listaJTextField.add(jTextE19);
         listaJTextField.add(jTextD19);
@@ -1789,6 +1839,22 @@ public class PoryectoMeno extends javax.swing.JFrame {
         listaJTextField.add(jTextP22);
         listaJTextField.add(jTextE23);
         listaJTextField.add(jTextE25);
+        listaJTextField.add(jTextNombre);
+        listaJTextField.add(jTextFechaNac);
+        listaJTextField.add(jTextEdad);
+        listaJTextField.add(jTextE27);
+        listaJTextField.add(jTextE28);
+        listaJTextField.add(jTextE29);
+        listaJTextField.add(jTextE30);
+        listaJTextField.add(jTextHCP1);
+        listaJTextField.add(jTextHCP2);
+        listaJTextField.add(jTextHCP3);
+        listaJTextField.add(jTextHCP4);
+        listaJTextField.add(jTextHCP5);
+        listaJTextField.add(jTextHCP6);
+        listaJTextField.add(jTextHCP7);
+        listaJTextField.add(jTextHCP8);
+        listaJTextField.add(jTextHCFecha);
 
         mapaCombosHist.put("P4", jComboP4);
         mapaCombosHist.put("P5", jComboP5);
@@ -1851,5 +1917,59 @@ public class PoryectoMeno extends javax.swing.JFrame {
 
         JComboBox name = listaCombosHist.get(0);
         name.addActionListener(name);
+    }
+
+    private void cargarNuevo() {
+        estado=NUEVO;
+        for (JTextField jText : listaJTextField) {
+            jText.setText("");
+        }
+    }
+
+    private void guardarDatos() {
+        PacienteBean paciente=new PacienteBean(jTextNombre.getText(), jTextApellidos.getText(), jTextFechaNac.getText());
+        int idPacienteNuevo=GestionPacientesBD.nuevoPaciente(paciente);
+        
+        
+        //HistoriaClinicaBean histClin=new HistoriaClinicaBean();
+        HistoriaClinicaFijaBean histClinFija=new HistoriaClinicaFijaBean();
+        if(estado.equals(NUEVO)){
+            histClinFija.setP1(jTextP1a.getText());
+            histClinFija.setP2(jTextP2a.getText());
+            histClinFija.setP3(jTextP3.getText());
+            histClinFija.setP4(jComboP4.getSelectedIndex()==0?"N":"S");
+            histClinFija.setP5(jComboP5.getSelectedIndex()==0?"N":"S");
+            histClinFija.setP6(jComboP6.getSelectedIndex()==0?"N":"S");
+            histClinFija.setP7(jComboP7.getSelectedIndex()==0?"N":"S");
+            histClinFija.setP8(jComboP8.getSelectedIndex()==0?"N":"S");
+            histClinFija.setP9(jComboP9.getSelectedIndex()==0?"N":"S");
+            
+            histClinFija.setP10(jComboP10.getSelectedIndex()==0?"N":"S");
+            histClinFija.setP11(jComboP11.getSelectedIndex()==0?"N":"S");
+            histClinFija.setP12(jComboP12.getSelectedIndex()==0?"N":"S");
+            histClinFija.setP13(jComboP13.getSelectedIndex()==0?"N":"S");
+            histClinFija.setP14(jComboP14.getSelectedIndex()==0?"N":"S");
+            histClinFija.setP15(jComboP15.getSelectedIndex()==0?"N":"S");
+            histClinFija.setP16(jComboP16.getSelectedIndex()==0?"N":"S");
+            histClinFija.setP17(jComboP17.getSelectedIndex()==0?"N":"S");
+            histClinFija.setP18(jComboP18.getSelectedIndex()==0?"N":"S");
+            histClinFija.setP19(jComboP19.getSelectedIndex()==0?"N":"S");
+            histClinFija.setP20(jComboP20.getSelectedIndex()==0?"N":"S");
+            histClinFija.setP23(jComboP23.getSelectedIndex()==0?"N":"S");
+            
+            histClinFija.setE18(jTextE18.getText());
+            histClinFija.setE19(jTextE19.getText());
+            histClinFija.setD19(jTextD19.getText());
+            histClinFija.setE20A(jTextE20A.getText());
+            histClinFija.setE20B(jTextE20B.getText());
+            histClinFija.setE23(jTextE23.getText());
+            histClinFija.setE25(jTextE25.getText());
+            
+            histClinFija.setIdPaciente(""+idPacienteNuevo);
+            GestionHistoriaClinicaBD.guardarHistoriaClinicaFija(histClinFija);
+            
+        }else if(estado.equals(MTTO)){
+            
+        }
     }
 }
