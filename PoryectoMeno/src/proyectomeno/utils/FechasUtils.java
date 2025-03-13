@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -27,72 +28,83 @@ public class FechasUtils {
         }
         return fecha.substring(8, 10) + "-" + fecha.substring(5, 7) + "-" + fecha.substring(0, 4);
     }
+
     /**
      * Suma a la fecha actual el número de meses que se pase como parámetro
+     *
      * @param n numero de meses a sumar
-     * @return 
+     * @return
      */
-    public static String sumaMesesHoy(int n){
+    public static String sumaMesesHoy(int n) {
         LocalDate fechaActual = LocalDate.now();
-        LocalDate nuevaFecha = fechaActual.plusMonths((-1)*n);
+        LocalDate nuevaFecha = fechaActual.plusMonths((-1) * n);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return nuevaFecha.format(formatter);
     }
+
     /**
      * Calcula la edad de la persona que se pasa su fecha en formado dd-mm-aaaa
+     *
      * @param fecha
-     * @return 
+     * @return
      */
-    public static String getEdad(String fecha){
+    public static String getEdad(String fecha) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate fechaNacimiento = LocalDate.parse(fecha, formatter);
         LocalDate fechaActual = LocalDate.now();
         int edad = Period.between(fechaNacimiento, fechaActual).getYears();
-        return ""+edad;
+        return "" + edad;
     }
-    
+
     /**
-     * Calcula los meses que hay entre una fecha y hoy. Si la fecha enviada es Null o "" devolverá 0
+     * Calcula los meses que hay entre una fecha y hoy. Si la fecha enviada es
+     * Null o "" devolverá 0
+     *
      * @param fecha
-     * @return 
+     * @return
      */
-    public static String getMeses(String fecha){
-        if(fecha==null || "".equalsIgnoreCase(fecha)){
+    public static String getMeses(String fecha) {
+        if (fecha == null || "".equalsIgnoreCase(fecha)) {
             return "0";
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate fechaCal = LocalDate.parse(fecha, formatter);
         LocalDate fechaActual = LocalDate.now();
-        int edad = Period.between(fechaCal, fechaActual).getMonths();
-        return ""+edad;
+        long meses = ChronoUnit.MONTHS.between(fechaCal, fechaActual);
+        return String.valueOf(meses);
     }
-    
+
     /**
-     * Dada una fecha de mysql (aaaa-mm-dd hh:mm:ss) genera la fecha estandar con el separador que se le pasa como parámetro
+     * Dada una fecha de mysql (aaaa-mm-dd hh:mm:ss) genera la fecha estandar
+     * con el separador que se le pasa como parámetro
+     *
      * @param fecha
      * @param separador
-     * @return 
+     * @return
      */
     public static String fechaYHora(String fecha, String separador) {
         if ((fecha == null) || (fecha.equalsIgnoreCase("")) || (fecha.equals("0000-00-00"))) {
             return "";
         }
-        return fecha.substring(8, 10) + separador + fecha.substring(5, 7) + separador + fecha.substring(0, 4) + " "+fecha.substring(11) ;
+        return fecha.substring(8, 10) + separador + fecha.substring(5, 7) + separador + fecha.substring(0, 4) + " " + fecha.substring(11);
     }
-    
+
     /**
-     * Dada una fecha de mysql (aaaa-mm-dd hh:mm:ss) genera la fecha estandar con el separador /
-     * Se puede usar la funcion fechaYHora(String fecha, String separador) si necesitamos otro separador
+     * Dada una fecha de mysql (aaaa-mm-dd hh:mm:ss) genera la fecha estandar
+     * con el separador / Se puede usar la funcion fechaYHora(String fecha,
+     * String separador) si necesitamos otro separador
+     *
      * @param fecha
-     * @return 
+     * @return
      */
     public static String fechaYHora(String fecha) {
-        return fechaYHora(fecha,"/");
+        return fechaYHora(fecha, "/");
     }
+
     /**
      * Dada una fecha en formato MySQL (aaaa-mm-dd) genera la fecha estandar
-     * española (dd-mm-aaaa) pero con el delimitador que se le pase, que
-     * puede ser /, un espacio, nada, ...
+     * española (dd-mm-aaaa) pero con el delimitador que se le pase, que puede
+     * ser /, un espacio, nada, ...
      *
      * @param fecha
      * @return
@@ -103,8 +115,6 @@ public class FechasUtils {
         }
         return fecha.substring(8, 10) + separador + fecha.substring(5, 7) + separador + fecha.substring(0, 4);
     }
-
-    
 
     /**
      * Prepara una fecha para poder ser utilizada en MySQL
@@ -191,11 +201,13 @@ public class FechasUtils {
     public static String fechaActualString() {
         return fechaActualString("-");
     }
-    
+
     /**
-     *  Devuelve la fecha de hoy en formado dd-mm-aaaa pero con el separador que le pasemos como parámetro.
+     * Devuelve la fecha de hoy en formado dd-mm-aaaa pero con el separador que
+     * le pasemos como parámetro.
+     *
      * @param separador
-     * @return 
+     * @return
      */
     public static String fechaActualString(String separador) {
         Calendar c = Calendar.getInstance();
@@ -218,13 +230,15 @@ public class FechasUtils {
         }
         return dia + separador + mes + separador + anio;
     }
-/**
- * Dado el mes nos dice su numero (1-> Enero, ...) y si el mes es Todos nos devuelve 0.
- * No es case sensitive.
- * @param mes
- * @return
- * @throws Exception 
- */
+
+    /**
+     * Dado el mes nos dice su numero (1-> Enero, ...) y si el mes es Todos nos
+     * devuelve 0. No es case sensitive.
+     *
+     * @param mes
+     * @return
+     * @throws Exception
+     */
     public static String getNumMes(String mes) throws Exception {
         if ("Enero".equalsIgnoreCase(mes)) {
             return "01";
@@ -250,19 +264,22 @@ public class FechasUtils {
             return "11";
         } else if ("Diciembre".equalsIgnoreCase(mes)) {
             return "12";
-        } else if("Todos".equalsIgnoreCase(mes)){
+        } else if ("Todos".equalsIgnoreCase(mes)) {
             return "0";
         } else {
             throw new Exception("Error al convertir el mes " + mes + " a número");
         }
 
     }
+
     /**
-     * Devuelve el número del mes en formato string. Enero es el 01, febrero 02, ...
+     * Devuelve el número del mes en formato string. Enero es el 01, febrero 02,
+     * ...
+     *
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
-    public static String getNumMesActualString(){
+    public static String getNumMesActualString() {
         Calendar c = Calendar.getInstance();
         int m = c.get(2) + 1;
         String mes;
@@ -273,57 +290,61 @@ public class FechasUtils {
         }
         return mes;
     }
+
     public static int getNumMesActualInteger() {
-        String mes=FechasUtils.getNumMesActualString();
+        String mes = FechasUtils.getNumMesActualString();
         return Integer.parseInt(mes);
     }
-    
-    
-/**
- * Dado el mes nos devuelve el literal del mes. Si le mandamos un 1 nos devuelve Enero. El caso del 0 devolverá
- * el literal "todos los meses"
- * @param mes
- * @return
- * @throws Exception 
- */
-    public static String getMesNum(int mes){
-        if(mes==0){
+
+    /**
+     * Dado el mes nos devuelve el literal del mes. Si le mandamos un 1 nos
+     * devuelve Enero. El caso del 0 devolverá el literal "todos los meses"
+     *
+     * @param mes
+     * @return
+     * @throws Exception
+     */
+    public static String getMesNum(int mes) {
+        if (mes == 0) {
             return "todos los meses";
-        }else if (mes==1) {
+        } else if (mes == 1) {
             return "Enero";
-        } else if (mes==2) {
+        } else if (mes == 2) {
             return "Febrero";
-        } else if (mes==3) {
+        } else if (mes == 3) {
             return "Marzo";
-        } else if (mes==4) {
+        } else if (mes == 4) {
             return "Abril";
-        } else if (mes==5) {
+        } else if (mes == 5) {
             return "Mayo";
-        } else if (mes==6) {
+        } else if (mes == 6) {
             return "Junio";
-        } else if (mes==7) {
+        } else if (mes == 7) {
             return "Julio";
-        } else if (mes==8) {
+        } else if (mes == 8) {
             return "Agosto";
-        } else if (mes==9) {
+        } else if (mes == 9) {
             return "Septiembre";
-        } else if (mes==10) {
+        } else if (mes == 10) {
             return "Octubre";
-        } else if (mes==11) {
+        } else if (mes == 11) {
             return "Noviembre";
-        } else if (mes==12) {
+        } else if (mes == 12) {
             return "Diciembre";
         } else {
             return "todos los meses";
         }
 
     }
+
     /**
-     * Rellena por la izq el texto que le pasemos rellenando con el relleno que le pasemos
+     * Rellena por la izq el texto que le pasemos rellenando con el relleno que
+     * le pasemos
+     *
      * @param texto cadena a rellenar por la izquierda
      * @param relleno Texto que utilizaremos para rellenar
      * @param longitud logitud que deberá tener la cadena resultante.
-     * @return 
+     * @return
      */
     public static String rellenaIzquierda(String texto, String relleno, int longitud) {
         String aux = "";
@@ -345,6 +366,5 @@ public class FechasUtils {
         //+ c.get(GregorianCalendar.MINUTE) + ":"
         //+ c.get(GregorianCalendar.SECOND);
     }
-
 
 }

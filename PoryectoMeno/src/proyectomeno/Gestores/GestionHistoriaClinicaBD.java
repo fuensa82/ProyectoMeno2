@@ -147,7 +147,7 @@ public class GestionHistoriaClinicaBD {
                 histResult.setP18(resultado.getString("P18"));
                 histResult.setP19(resultado.getString("P19"));
                 histResult.setE19(resultado.getString("E19"));
-                histResult.setD19(resultado.getString("D19"));
+                histResult.setD19(FechasUtils.fecha(resultado.getString("D19")));
 
                 histResult.setP20(resultado.getString("P20"));
                 histResult.setE20A(resultado.getString("E20A"));

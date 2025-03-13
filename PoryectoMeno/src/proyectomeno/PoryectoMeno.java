@@ -30,9 +30,9 @@ import proyectomeno.utils.FechasUtils;
  */
 public class PoryectoMeno extends javax.swing.JFrame {
 
-    private static String NUEVO="NUEVO";
-    private static String MTTO="MTTO";
-    
+    private static String NUEVO = "NUEVO";
+    private static String MTTO = "MTTO";
+
     private ArrayList<PacienteBean> listaPacientes;
     private ArrayList<JComboBox> listaCombosHist;
     private HashMap<String, Object> mapaCombosHist;
@@ -41,7 +41,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
     private HashMap<String, Object> mapaCombosHistFamDD;
     private ArrayList<JTextField> listaJTextField;
     private HashMap<String, Object> mapaJTextFieldDD;
-    public String estado=NUEVO;
+    public String estado = NUEVO;
     private String idPacienteSel;
 
     /**
@@ -54,7 +54,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
             Logger.getLogger(PoryectoMeno.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
-       
+
         creaListaMapaHist();
         cargarTablaPacientes();
         ponListenerTablapacientes();
@@ -68,7 +68,7 @@ public class PoryectoMeno extends javax.swing.JFrame {
         jTablePacientes.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
-                estado=MTTO;
+                estado = MTTO;
                 if (e.getClickCount() == 1) {
                     idPacienteSel = (String) jTablePacientes.getValueAt(jTablePacientes.getSelectedRow(), 0);
                     cargarDatosPersonalesPaciente(idPacienteSel);
@@ -1574,10 +1574,10 @@ public class PoryectoMeno extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextHCP3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        estado=NUEVO;
+        estado = NUEVO;
         cargarNuevo();
-        
-        
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
     public void vaciarHistoriaClinica() {
         jTextHCP1.setText("");
@@ -1919,43 +1919,42 @@ public class PoryectoMeno extends javax.swing.JFrame {
     }
 
     private void cargarNuevo() {
-        estado=NUEVO;
+        estado = NUEVO;
         for (JTextField jText : listaJTextField) {
             jText.setText("");
         }
     }
 
     private void guardarDatos() {
-        PacienteBean paciente=new PacienteBean(jTextNombre.getText(), jTextApellidos.getText(), jTextFechaNac.getText());
-        int idPacienteNuevo=GestionPacientesBD.nuevoPaciente(paciente);
-        
-        
+
         //HistoriaClinicaBean histClin=new HistoriaClinicaBean();
-        HistoriaClinicaFijaBean histClinFija=new HistoriaClinicaFijaBean();
-        if(estado.equals(NUEVO)){
+        HistoriaClinicaFijaBean histClinFija = new HistoriaClinicaFijaBean();
+        if (estado.equals(NUEVO)) {
+            PacienteBean paciente = new PacienteBean(jTextNombre.getText(), jTextApellidos.getText(), jTextFechaNac.getText());
+            int idPacienteNuevo = GestionPacientesBD.nuevoPaciente(paciente);
             histClinFija.setP1(jTextP1a.getText());
             histClinFija.setP2(jTextP2a.getText());
             histClinFija.setP3(jTextP3.getText());
-            histClinFija.setP4(jComboP4.getSelectedIndex()==0?"N":"S");
-            histClinFija.setP5(jComboP5.getSelectedIndex()==0?"N":"S");
-            histClinFija.setP6(jComboP6.getSelectedIndex()==0?"N":"S");
-            histClinFija.setP7(jComboP7.getSelectedIndex()==0?"N":"S");
-            histClinFija.setP8(jComboP8.getSelectedIndex()==0?"N":"S");
-            histClinFija.setP9(jComboP9.getSelectedIndex()==0?"N":"S");
-            
-            histClinFija.setP10(jComboP10.getSelectedIndex()==0?"N":"S");
-            histClinFija.setP11(jComboP11.getSelectedIndex()==0?"N":"S");
-            histClinFija.setP12(jComboP12.getSelectedIndex()==0?"N":"S");
-            histClinFija.setP13(jComboP13.getSelectedIndex()==0?"N":"S");
-            histClinFija.setP14(jComboP14.getSelectedIndex()==0?"N":"S");
-            histClinFija.setP15(jComboP15.getSelectedIndex()==0?"N":"S");
-            histClinFija.setP16(jComboP16.getSelectedIndex()==0?"N":"S");
-            histClinFija.setP17(jComboP17.getSelectedIndex()==0?"N":"S");
-            histClinFija.setP18(jComboP18.getSelectedIndex()==0?"N":"S");
-            histClinFija.setP19(jComboP19.getSelectedIndex()==0?"N":"S");
-            histClinFija.setP20(jComboP20.getSelectedIndex()==0?"N":"S");
-            histClinFija.setP23(jComboP23.getSelectedIndex()==0?"N":"S");
-            
+            histClinFija.setP4(jComboP4.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP5(jComboP5.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP6(jComboP6.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP7(jComboP7.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP8(jComboP8.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP9(jComboP9.getSelectedIndex() == 0 ? "N" : "S");
+
+            histClinFija.setP10(jComboP10.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP11(jComboP11.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP12(jComboP12.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP13(jComboP13.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP14(jComboP14.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP15(jComboP15.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP16(jComboP16.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP17(jComboP17.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP18(jComboP18.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP19(jComboP19.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP20(jComboP20.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP23(jComboP23.getSelectedIndex() == 0 ? "N" : "S");
+
             histClinFija.setE18(jTextE18.getText());
             histClinFija.setE19(jTextE19.getText());
             histClinFija.setD19(jTextD19.getText());
@@ -1963,14 +1962,47 @@ public class PoryectoMeno extends javax.swing.JFrame {
             histClinFija.setE20B(jTextE20B.getText());
             histClinFija.setE23(jTextE23.getText());
             histClinFija.setE25(jTextE25.getText());
-            
-            histClinFija.setIdPaciente(""+idPacienteNuevo);
+
+            histClinFija.setIdPaciente("" + idPacienteNuevo);
             GestionHistoriaClinicaBD.guardarHistoriaClinicaFija(histClinFija);
-            
-        }else if(estado.equals(MTTO)){
-            
+
+        } else if (estado.equals(MTTO)) {
+            histClinFija.setP1(jTextP1a.getText());
+            histClinFija.setP2(jTextP2a.getText());
+            histClinFija.setP3(jTextP3.getText());
+            histClinFija.setP4(jComboP4.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP5(jComboP5.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP6(jComboP6.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP7(jComboP7.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP8(jComboP8.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP9(jComboP9.getSelectedIndex() == 0 ? "N" : "S");
+
+            histClinFija.setP10(jComboP10.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP11(jComboP11.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP12(jComboP12.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP13(jComboP13.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP14(jComboP14.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP15(jComboP15.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP16(jComboP16.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP17(jComboP17.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP18(jComboP18.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP19(jComboP19.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP20(jComboP20.getSelectedIndex() == 0 ? "N" : "S");
+            histClinFija.setP23(jComboP23.getSelectedIndex() == 0 ? "N" : "S");
+
+            histClinFija.setE18(jTextE18.getText());
+            histClinFija.setE19(jTextE19.getText());
+            histClinFija.setD19(jTextD19.getText());
+            histClinFija.setE20A(jTextE20A.getText());
+            histClinFija.setE20B(jTextE20B.getText());
+            histClinFija.setE23(jTextE23.getText());
+            histClinFija.setE25(jTextE25.getText());
+
+            histClinFija.setIdPaciente("" + idPacienteSel);
+            System.out.println("Se va a guardar");
+            *** hay que hacer un método con un update ++++ tambien falta pasar el is de la historia clinica fija
+            GestionHistoriaClinicaBD.guardarHistoriaClinicaFija(histClinFija);
         }
     }
 
-    
 }
