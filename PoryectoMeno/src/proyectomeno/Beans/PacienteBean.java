@@ -13,6 +13,18 @@ public class PacienteBean {
     private String nombre;
     private String apellidos;
     private String fechaNac;
+    private String idHistClinicaFija;
+
+    public String toString(){
+        return "nom: "+nombre+" ape: "+apellidos+" idPaciente:"+idPaciente+" idHistClinicaFija:"+idHistClinicaFija;
+    }
+    public String getIdHistClinicaFija() {
+        return idHistClinicaFija;
+    }
+
+    public void setIdHistClinicaFija(String idHistClinicaFija) {
+        this.idHistClinicaFija = idHistClinicaFija;
+    }
 
     public PacienteBean() {
     }

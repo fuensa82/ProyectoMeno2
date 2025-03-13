@@ -15,6 +15,7 @@ import javax.naming.NamingException;
 import proyectomeno.Beans.HistoriaClinicaBean;
 import proyectomeno.Beans.HistoriaClinicaFamiliarBean;
 import proyectomeno.Beans.HistoriaClinicaFijaBean;
+import proyectomeno.Beans.PacienteBean;
 import proyectomeno.utils.ConectorBD;
 import proyectomeno.utils.FechasUtils;
 
@@ -177,7 +178,7 @@ public class GestionHistoriaClinicaBD {
         return histResult;
     }
     
-    public static int guardarHistoriaClinicaFija(HistoriaClinicaFijaBean histResult) {
+    public static int guardarNuevaHistoriaClinicaFija(HistoriaClinicaFijaBean histResult) {
         int resultado = 0;
         Connection conexion = null;
         System.out.println("guardarHistoriaClinicaFija");
@@ -222,6 +223,69 @@ public class GestionHistoriaClinicaBD {
             insert.setString(32, histResult.getP24());
             insert.setString(33, histResult.getP25());
             insert.setString(34, histResult.getP26());
+
+            resultado = insert.executeUpdate();
+
+            return resultado;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NamingException ex) {
+
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException ex) {
+            }
+        }
+        return resultado;
+    }
+    
+    public static int guardarHistoriaClinicaFija(HistoriaClinicaFijaBean histResult, PacienteBean pacienteSel) {
+        int resultado = 0;
+        Connection conexion = null;
+        System.out.println("guardarHistoriaClinicaFija + idPaciente:"+pacienteSel);
+        try {
+            conexion = ConectorBD.getConnection();
+            PreparedStatement insert = conexion.prepareStatement(
+                    "UPDATE `menopausia`.`histclinicafija` set fechaHistClinica=? , P1=? , P2=? , P3=? , P4=? , P5=? , P6=? , P7=?, "
+                    + " P8=? , P9=? , P10=? , P11=? , P12=? , P13=? , P14=? , P15=? , P16=? , P17=? , P18=? , E18=? , P19=? , E19=? , D19=? , P20=? , E20A=? ,"
+                    + " E20B=? , P21=? , P22=? , P23=? , E23=? , P24=? , P25=? , P26=? where idHistClinicaFija=? ");
+            //insert.setString(1, histResult.getIdPaciente());
+            insert.setString(1, FechasUtils.fechaParaMysql(histResult.getFechaHistClinica()));
+            insert.setString(2, FechasUtils.fechaParaMysql(histResult.getP1()));
+            insert.setString(3, FechasUtils.fechaParaMysql(histResult.getP2()));
+            insert.setString(4, FechasUtils.fechaParaMysql(histResult.getP3()));
+            insert.setString(5, histResult.getP4());
+            insert.setString(6, histResult.getP5());
+            insert.setString(7, histResult.getP6());
+            insert.setString(8, histResult.getP7());
+            insert.setString(9, histResult.getP8());
+            insert.setString(10, histResult.getP9());
+            insert.setString(11, histResult.getP10());
+            insert.setString(12, histResult.getP11());
+            insert.setString(13, histResult.getP12());
+            insert.setString(14, histResult.getP13());
+            insert.setString(15, histResult.getP14());
+            insert.setString(16, histResult.getP15());
+            insert.setString(17, histResult.getP16());
+            insert.setString(18, histResult.getP17());
+            insert.setString(19, histResult.getP18());
+            insert.setString(20, histResult.getE18());
+            insert.setString(21, histResult.getP19());
+            insert.setString(22, histResult.getE19());
+            insert.setString(23, FechasUtils.fechaParaMysql(histResult.getD19()));
+            insert.setString(24, histResult.getP20());
+            insert.setString(25, histResult.getE20A());
+            insert.setString(26, histResult.getE20B());
+            insert.setString(27, histResult.getP21());
+            insert.setString(28, histResult.getP22());
+            insert.setString(29, histResult.getP23());
+            insert.setString(30, histResult.getE23());
+            insert.setString(31, histResult.getP24());
+            insert.setString(32, histResult.getP25());
+            insert.setString(33, histResult.getP26());
+            insert.setString(34, pacienteSel.getIdHistClinicaFija());
 
             resultado = insert.executeUpdate();
 
