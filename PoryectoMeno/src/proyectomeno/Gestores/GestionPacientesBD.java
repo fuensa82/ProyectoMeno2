@@ -81,8 +81,8 @@ public class GestionPacientesBD {
             if (resultado.next()) {
                 System.out.println("next");
                 pacienteResult.setIdPaciente(resultado.getString(1));
-                pacienteResult.setNombre(resultado.getString(2));
-                pacienteResult.setApellidos(resultado.getString(3));
+                pacienteResult.setNombre(resultado.getString(3));
+                pacienteResult.setApellidos(resultado.getString(2));
                 pacienteResult.setFechaNac(FechasUtils.fecha(resultado.getString(4)));
             }
         } catch (SQLException e) {
@@ -130,5 +130,31 @@ public class GestionPacientesBD {
         }
         System.out.println("Resultado: 0");
         return 0;
+    }
+    
+    public static int modificarPaciente(PacienteBean paciente) {
+        System.out.println("Modificar paciente. Guardando");
+        int result = 0;
+        Connection conexion = null;
+        try {
+            conexion = ConectorBD.getConnection();
+            PreparedStatement sentencia = conexion.prepareStatement("update `menopausia`.`paciente` set Apellidos=?, Nombre=?, FechaNac=? where idPaciente=?");
+
+            sentencia.setString(1, paciente.getApellidos());
+            sentencia.setString(2, paciente.getNombre());
+            sentencia.setString(3, FechasUtils.fechaParaMysql(paciente.getFechaNac()));
+            sentencia.setString(4, paciente.getIdPaciente());
+
+            result = sentencia.executeUpdate();
+            
+        } catch (SQLException | NamingException e) {
+            System.out.println("Resultado: -1"+e);
+        } finally {
+            try {
+                conexion.close();
+            } catch (SQLException ex) {
+            }
+        }
+        return result;
     }
 }
