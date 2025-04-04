@@ -109,4 +109,8 @@ public class HistoriaClinicaBean {
     public void setP8(String P8) {
         this.P8 = P8;
     }
+
+    public String getP7bd() {
+        return P7.replace(',', '.');
+    }
 }

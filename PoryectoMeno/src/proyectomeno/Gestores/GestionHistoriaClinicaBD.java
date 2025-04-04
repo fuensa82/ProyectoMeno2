@@ -223,7 +223,7 @@ public class GestionHistoriaClinicaBD {
             insert.setString(32, histResult.getP24());
             insert.setString(33, histResult.getP25());
             insert.setString(34, histResult.getP26());
-
+            System.out.println("SQL: "+ insert.toString());
             resultado = insert.executeUpdate();
 
             return resultado;
@@ -321,7 +321,7 @@ public class GestionHistoriaClinicaBD {
             insert1.setString(6, historia.getP4()); //P1
             insert1.setString(7, historia.getP5()); //P1
             insert1.setString(8, historia.getP6()); //P1
-            insert1.setString(9, historia.getP7()); //P1
+            insert1.setString(9, historia.getP7bd()); //P1
             insert1.setString(10, historia.getP8()); //P1
             
             System.out.println(insert1.toString());
